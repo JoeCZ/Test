@@ -1,5 +1,7 @@
 package joe.Chapter4_4;
 
+import java.util.LinkedList;
+
 import joe.FourOne.TreeNode;
 
 public class Question4_4 {
@@ -28,16 +30,18 @@ public class Question4_4 {
 	}
 	
 	static Boolean checkNextList() {
-		
+		if(linkNode[listCount + 1].head == null) return false;
+		else return true;
 	}
+	
+	
 }
 
 class LinkedListNode {
-	private TreeNode root;
-	private int data;
-	private LinkedListNode head;
-	private LinkedListNode end;
-	private LinkedListNode next;
+	public TreeNode root;
+	public LinkedListNode head;
+	public LinkedListNode end;
+	public LinkedListNode next;
 	
 	public LinkedListNode(TreeNode root) {
 		// TODO Auto-generated constructor stub
@@ -45,21 +49,30 @@ class LinkedListNode {
 		
 	}
 	
-	static public LinkedListNode appendNode(LinkedListNode n, LinkedListNode head) {
-		if(head == null) {
-			head.head = n;
-			head.end = n;
+	static public LinkedListNode appendNode(LinkedListNode n, LinkedListNode listHead) {
+		if(listHead == null) {
+			listHead.head = n;
+			listHead.end = n;
 		} else {
-			head.end.next = n;
-			head.end = n;
+			listHead.end.next = n;
+			listHead.end = n;
 		}
-		return head;
+		return listHead;
 	}
 	
 	static public LinkedListNode removeFirst(LinkedListNode n) {
 		if(n == null) return null;
+		if(n.next == null)  {
+			n.head = null;
+			n.end = null;
+			return n;
+		} else {
+			n.head = n.next;
+			return n;
+		}
 	}
 	static public Boolean isEmpty(LinkedListNode n) {
-		
+		if(n.head == null) return true;
+		else return false;
 	}
 }
